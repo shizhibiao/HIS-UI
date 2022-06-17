@@ -1,0 +1,79 @@
+.app-wrapper {
+  .aw-description {
+    &>h2 {
+      font-size: 20px;
+      margin-top: 48px;
+      margin-bottom: 12px;
+    }
+
+    &>p {
+      line-height: 1.5;
+      margin: 0;
+      margin-top: 12px;
+    }
+  }
+
+  .aw-content {
+    margin-top: 24px;
+    padding: 48px;
+    color: #282f38;
+    border: 1px solid #e5e6eb;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .aw-btn {
+    padding-top: 12px;
+
+    &>.aw-btn-item {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 50%;
+      margin-left: 8px;
+      background-color: #fff;
+      border: 1px solid #e5e6eb;
+      cursor: pointer;
+    }
+
+    &>.aw-btn-item:hover {
+      background-color: #e5e6eb;
+    }
+
+    &>.aw-btn-item .iconfont {
+      font-size: 13px;
+    }
+
+    &>.aw-btn-item .iconfont.icon-fuzhi {
+      font-size: 12px;
+    }
+
+    &>.aw-btn-item-active {
+      background-color: rgba(29, 33, 41, 1);
+
+      .iconfont {
+        color: #e5e6eb;
+      }
+    }
+
+    &>.aw-btn-item.aw-btn-item-active:hover {
+      background-color: rgba(29, 33, 41, 1);
+    }
+
+  }
+
+  .content-code-design {
+    position: relative;
+    overflow: hidden;
+
+    .ant-tabs-nav-wrap {
+      justify-content: center;
+    }
+  }
+
+  .content-code-design.show-all {
+    margin-top: 16px;
+  }
+}

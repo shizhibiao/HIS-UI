@@ -2,14 +2,20 @@
 
 # dependencies
 /node_modules
+dll/dist
 /.pnp
 .pnp.js
+.project
+.idea
+/.uglify-cache
+/.cache
 
 # testing
 /coverage
+/.idea
 
-# production
-/build
+# build cache
+/dist
 
 # misc
 .DS_Store
@@ -17,7 +23,10 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.project
+.idea
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json*

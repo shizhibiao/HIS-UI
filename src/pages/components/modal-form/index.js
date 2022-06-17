@@ -1,0 +1,1 @@
+export const ModalForm = () => import('./ModalForm');

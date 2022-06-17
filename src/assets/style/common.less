@@ -1,0 +1,87 @@
+// 溢出隐藏
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 外链
+.links {
+  color: #1890ff;
+  background-color: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+/* 数字输入框去掉上下箭头----type='number' className='input-number */
+.input-number::-webkit-outer-spin-button,
+.input-number::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+.input-number[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-number {
+  width: 100%;
+}
+
+/* 简单查询界面查询条件样式 */
+.query-table-header {
+  width: 100%;
+  height: 64px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+}
+
+/* 按钮去除获取焦点及鼠标移入样式 */
+.add-btn.ant-btn {
+  background: rgba(247, 128, 93, 1);
+  color: #fff;
+}
+
+.add-btn-nohover.ant-btn:hover,
+.add-btn-nohover.ant-btn:focus {
+  border-color: transparent;
+}
+
+// 仿写超链接
+.span {
+  color: #1890ff;
+  background-color: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+/* card左侧图标 */
+.card-title-left-img {
+  display: flex;
+  align-items: center;
+}
+
+.card-title-left-img img {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+// 选中行样式
+.clickRowStyle, .clickRowStyle>td {
+  background-color: #bfe6f8 !important;
+}
+
+.clickRowStyle:hover>td {
+  background-color: #bfe6f8 !important;
+}
+
+// 表格高度设置
+.table-body-height .ant-table-wrapper .ant-table-container>.ant-table-body {
+  height: 1000px !important;
+}

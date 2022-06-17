@@ -1,0 +1,45 @@
+.icon-page {
+  .icon-page-content {
+    width: 100%;
+  }
+
+  .icon-page-item {
+    position: relative;
+    width: 16.66%;
+    height: 100px;
+    padding: 20px 0 0;
+    overflow: hidden;
+    color: #555;
+    text-align: center;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+
+    &>i {
+      display: inline-block;
+      color: inherit;
+      font-style: normal;
+      line-height: 0;
+      text-align: center;
+      text-transform: none;
+      vertical-align: -0.125em;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      transform: scale(1.4);
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+      will-change: transform;
+    }
+
+    &>p {
+      margin-top: 16px;
+    }
+  }
+
+  .icon-page-item:hover {
+    color: #fff;
+    background-color: #1890ff;
+  }
+}
