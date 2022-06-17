@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --progress --colors --config build/webpack.dev.conf.js",
+    "start": "webpack-dev-server --hot --inline --disableHostCheck=true --progress --colors --config build/webpack.dev.conf.js",
     "dev": "yarn start",
     "build": "rimraf dist && webpack --progress --colors --progress --config build/webpack.prod.conf.js && rimraf .uglify-cache",
     "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit"

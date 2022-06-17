@@ -19,8 +19,9 @@ module.exports = merge(baseWebpackConfig, {
 		compress: true, // 启用gzip压缩
 		inline: true, // 设置为true，当源文件改变时会自动刷新页面
 		hot: true, // 模块热更新，取决于HotModuleReplacementPlugin
-		host: '127.0.0.1', // 设置默认监听域名，如果省略，默认为“localhost”
-		port: 3002 // 设置默认监听端口，如果省略，默认为“8080”
+		host: 'localhost', // 设置默认监听域名，如果省略，默认为“localhost”
+		port: 3002, // 设置默认监听端口，如果省略，默认为“8080”
+		disableHostCheck: true
 	},
 
 	// 插件
