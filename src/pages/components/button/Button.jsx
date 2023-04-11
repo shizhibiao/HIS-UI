@@ -54,7 +54,9 @@ ReactDOM.render(
 		className="add-btn add-btn-nohover"
 		icon="plus"
 		onClick={this.handleAdd}
-	>新增数据</Button>,
+	>
+		新增数据
+	</Button>,
 	mountNode,
 );`}
 					code4={`import { Button } from 'antd';
@@ -65,7 +67,9 @@ ReactDOM.render(
 		className="add-btn add-btn-nohover"
 		icon={<PlusOutlined />}
 		onClick={this.handleAdd}
-	>新增数据</Button>
+	>
+		新增数据
+	</Button>
 );`}
 				>
 					<div>
