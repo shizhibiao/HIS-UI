@@ -3,23 +3,23 @@ const fs = require('fs');
 // 组件数据
 let conponentData = {
   Button: {
-    title: '按钮',
+    title: '新增按钮',
     // matching: `className="add-btn add-btn-nohover"`, // 新版
     matching: `Button icon="plus"`, // 现阶段系统中
     data: []
   },
   Icon: {
-    title: '图标',
+    title: 'iconfont图标',
     matching: `className='iconfont`,
     data: []
   },
   Input: {
-    title: '输入框',
+    title: '自定义数字输入框',
     matching: `className="input-number"`,
     data: []
   },
   Select: {
-    title: '下拉框',
+    title: '下拉框数据获取',
     matching: `React.$SelectOptions`,
     data: []
   },
@@ -28,9 +28,9 @@ let conponentData = {
     matching: 'components/rangePicker/index',
     data: []
   },
-  DynamicRenderimgForm: {
+  DynamicRenderingForm: {
     title: '动态表单',
-    matching: 'pages/common/DynamicRenderimgForm',
+    matching: 'pages/common/DynamicRenderingForm',
     data: []
   },
   CommonPagination: {
@@ -75,47 +75,102 @@ function fsReaddir(catalogue) {
         let data = fs.readFileSync(url); // 读取
         let toStringData = data && data.toString();
         let componentDescripe = ''; // 组件描述
-        // let componentCreater = ''; // 组件创建人
-        // let componentDate = ''; // 组件创建日期
+        let componentCreater = ''; // 组件创建人
+        let componentDate = ''; // 组件创建日期
         let splitColumnData = toStringData.split('\n');
-
         // 获取组件描述
         if (splitColumnData[0].indexOf('///') > -1) { // 匹配单行注释三个斜杠
           componentDescripe = trim(splitColumnData[0].split('///')[1]);
         } else if (splitColumnData[0].indexOf('//') > -1) { // 匹配单行注释
           componentDescripe = trim(splitColumnData[0].split('//')[1]);
         } else {
-          for (var i = 0; i < splitColumnData.length; i++) {
+          // 描述
+          for (let i = 0; i < splitColumnData.length; i++) {
+            let currentRecord = splitColumnData[i];
             if (i <= 6) { // 取前面六行
-              if (splitColumnData[i].indexOf('* descripts：') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* descripts：')[1]);
+              if (currentRecord.indexOf('* descripts：') > -1) {
+                componentDescripe = trim(currentRecord.split('* descripts：')[1]);
                 break;
-              } if (splitColumnData[i].indexOf('* descripts') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* descripts')[1]);
+              } else if (currentRecord.indexOf('* descripts:') > -1) {
+                componentDescripe = trim(currentRecord.split('* descripts:')[1]);
                 break;
-              } if (splitColumnData[i].indexOf('* Descripts：') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* Descripts：')[1]);
+              } else if (currentRecord.indexOf('* descripts') > -1) {
+                componentDescripe = trim(currentRecord.split('* descripts')[1]);
                 break;
-              } if (splitColumnData[i].indexOf('* Descripts') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* Descripts')[1]);
+              } else if (currentRecord.indexOf('* Describe：') > -1) {
+                componentDescripe = trim(currentRecord.split('* Describe：')[1]);
                 break;
-              } else if (splitColumnData[i].indexOf('* Describe：') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* Describe：')[1]);
+              } else if (currentRecord.indexOf('* Describe') > -1) {
+                componentDescripe = trim(currentRecord.split('* Describe')[1]);
                 break;
-              } else if (splitColumnData[i].indexOf('* Describe') > -1) { // 匹配多行注释
-                componentDescripe = trim(splitColumnData[i].split('* Describe')[1]);
+              } else if ((currentRecord.indexOf('* ') > -1) && trim(currentRecord.split('* ')[1]) && trim(currentRecord.split('* ')[1]).length > 3) { // 有些* 这种情况会注释名字
+                componentDescripe = trim(currentRecord.split('* ')[1]);
+              }
+            }
+          }
+
+          // 创建人
+          for (let i = 0; i < splitColumnData.length; i++) {
+            let currentRecord = splitColumnData[i];
+            if (i <= 6) { // 取前面六行
+              if (currentRecord.indexOf('Creator：') > -1) {
+                componentCreater = trim(currentRecord.split('Creator：')[1]);
                 break;
-              } else if (
-                (splitColumnData[i].indexOf('* ') > -1) &&
-                (splitColumnData[i].indexOf('* Creator') === -1) &&
-                (splitColumnData[i].indexOf('* Creater') === -1) &&
-                (splitColumnData[i].indexOf('* CreatDate') === -1) &&
-                (splitColumnData[i].indexOf('* CreateDate') === -1) &&
-                (splitColumnData[i].indexOf('* LastModifiedDate') === -1) &&
-                trim(splitColumnData[i].split('* ')[1]) &&
-                trim(splitColumnData[i].split('* ')[1]).length > 3 // 有些* 这种情况会注释名字
-              ) {
-                componentDescripe = trim(splitColumnData[i].split('* ')[1]);
+              } else if (currentRecord.indexOf('Creator:') > -1) {
+                componentCreater = trim(currentRecord.split('Creator:')[1]);
+                break;
+              } else if (currentRecord.indexOf('Creator') > -1) {
+                componentCreater = trim(currentRecord.split('Creator')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Creater：') > -1)) {
+                componentCreater = trim(currentRecord.split('Creater：')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Creater:') > -1)) {
+                componentCreater = trim(currentRecord.split('Creater:')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Creater') > -1)) {
+                componentCreater = trim(currentRecord.split('Creater')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Create：') > -1)) {
+                componentCreater = trim(currentRecord.split('Create：')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Create:') > -1)) {
+                componentCreater = trim(currentRecord.split('Create:')[1]);
+                break;
+              } else if ((currentRecord.indexOf('Create') > -1) && currentRecord.indexOf('CreateDate') < 0) {
+                componentCreater = trim(currentRecord.split('Create')[1]);
+                break;
+              }
+            }
+          }
+
+          // 创建日期
+          for (let i = 0; i < splitColumnData.length; i++) {
+            let currentRecord = splitColumnData[i];
+            if (i <= 6) { // 取前面六行
+              if (currentRecord.indexOf('* CreatDate：') > -1) {
+                componentDate = trim(currentRecord.split('* CreatDate：')[1]);
+                break;
+              } else if (currentRecord.indexOf('* CreatDate:') > -1) {
+                componentDate = trim(currentRecord.split('* CreatDate:')[1]);
+                break;
+              } else if (currentRecord.indexOf('* CreatDate') > -1) {
+                componentDate = trim(currentRecord.split('* CreatDate')[1]);
+                break;
+              } else if (currentRecord.indexOf('* CreateDate：') > -1) {
+                componentDate = trim(currentRecord.split('* CreateDate：')[1]);
+                break;
+              } else if (currentRecord.indexOf('* CreateDate:') > -1) {
+                componentDate = trim(currentRecord.split('* CreateDate:')[1]);
+                break;
+              } else if (currentRecord.indexOf('* CreateDate') > -1) {
+                componentDate = trim(currentRecord.split('* CreateDate')[1]);
+                break;
+              } else if (currentRecord.indexOf('* LastModifiedDate：') > -1) {
+                componentDate = trim(currentRecord.split('* LastModifiedDate：')[1]);
+                break;
+              } else if (currentRecord.indexOf('* LastModifiedDate') > -1) {
+                componentDate = trim(currentRecord.split('* LastModifiedDate')[1]);
                 break;
               }
             }
@@ -123,12 +178,14 @@ function fsReaddir(catalogue) {
         }
 
         // 根据界面的引用将数据归类
-        for (var key in conponentData) {
+        for (let key in conponentData) {
           let importInfo = conponentData[key] && conponentData[key].matching ? conponentData[key].matching : '';
           if (importInfo && toStringData && toStringData.indexOf(importInfo) > -1) {
             conponentData[key].data.push({
               path: url,
-              title: componentDescripe
+              title: componentDescripe,
+              createUser: componentCreater,
+              createDate: componentDate,
             })
           }
         }
